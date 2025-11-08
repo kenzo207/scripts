@@ -151,6 +151,159 @@ python3 sys_monitor.py
 
 ---
 
+## Weather CLI
+
+This script retrieves and displays current weather information for any city using the wttr.in service. It provides essential weather data like temperature, humidity, conditions, and wind speed in a clean, terminal-friendly format.
+
+### Features
+
+- **Simple and Detailed Formats**: Choose between compact one-line output or full ASCII art weather reports.
+- **No API Key Required**: Uses the free wttr.in service that doesn't require authentication.
+- **Comprehensive Error Handling**: Clear error messages for invalid cities, network issues, and timeouts.
+- **Fast and Lightweight**: Quick responses with minimal dependencies.
+
+### Installation
+
+The Weather CLI requires the `requests` library. Install it using pip:
+
+```bash
+pip install requests
+```
+
+Or install all dependencies for the utility scripts:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Usage
+
+To use the Weather CLI, run the script with a city name and optional format parameter.
+
+#### Get weather in simple format (default)
+
+```bash
+python3 weather_cli.py Paris
+```
+
+Output example:
+```
+Paris: ☀️  +22°C
+```
+
+#### Get weather in simple format (explicit)
+
+```bash
+python3 weather_cli.py "New York" --format simple
+```
+
+#### Get weather in detailed format
+
+```bash
+python3 weather_cli.py London --format detailed
+```
+
+Output example:
+```
+Weather report: London
+
+     \  /       Partly cloudy
+   _ /"".-.     18 °C          
+     \_(   ).   ↓ 12 km/h      
+     /(___(__)  10 km          
+               0.2 mm
+```
+
+#### Get help
+
+```bash
+python3 weather_cli.py --help
+```
+
+### About wttr.in
+
+The Weather CLI uses [wttr.in](https://wttr.in), a free and open-source weather service that provides:
+
+- **No API Key Required**: No registration or authentication needed
+- **Pre-formatted Output**: Weather data comes already formatted with emojis and ASCII art
+- **Multiple Languages**: Supports various languages and locales
+- **Reliable Data**: Uses data from multiple weather services for accuracy
+- **No Rate Limits**: Reasonable usage is free and unlimited
+
+This makes the Weather CLI extremely simple to set up and use compared to other weather APIs that require API keys and complex authentication.
+
+### Troubleshooting
+
+#### City Not Found Error
+
+```
+❌ Error: City 'Pariis' not found. Please check the spelling.
+```
+
+**Solution**: Double-check the city name spelling. Use common English names for cities (e.g., "Moscow" instead of "Moskva").
+
+#### Connection Error
+
+```
+❌ Error: Unable to connect to weather service. Check your internet connection.
+```
+
+**Solution**: 
+- Verify your internet connection is working
+- Check if you can access https://wttr.in in your browser
+- If behind a proxy, ensure your proxy settings are configured correctly
+
+#### Timeout Error
+
+```
+❌ Error: Request timed out. Please try again.
+```
+
+**Solution**:
+- The wttr.in service might be experiencing high load
+- Wait a few seconds and try again
+- Check your internet connection speed
+
+#### Module Not Found Error
+
+```
+ModuleNotFoundError: No module named 'requests'
+```
+
+**Solution**: Install the requests library:
+```bash
+pip install requests
+```
+
+#### Special Characters Not Displaying
+
+If emojis or special characters don't display correctly:
+
+**Solution**:
+- Ensure your terminal supports UTF-8 encoding
+- Try a different terminal emulator (e.g., iTerm2 on macOS, Windows Terminal on Windows)
+- Update your terminal fonts to include emoji support
+
+### Examples
+
+#### Check weather for multiple cities
+
+```bash
+python3 weather_cli.py Tokyo
+python3 weather_cli.py "San Francisco"
+python3 weather_cli.py Berlin --format detailed
+```
+
+#### Use in scripts
+
+```bash
+#!/bin/bash
+# Check weather for your location
+python3 weather_cli.py "Your City" --format simple
+```
+
+---
+
 ## YouTube Downloader
 
 This script is a tool for downloading videos and audio from YouTube. It supports various formats and playlists.
